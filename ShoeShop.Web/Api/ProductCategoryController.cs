@@ -17,21 +17,20 @@ namespace ShoeShop.Web.Api
     {
         IProductCategoryService _productCategoryService;
         public ProductCategoryController(IErrorService errorService, IProductCategoryService productCategoryService)
-            : base(errorService)
+            :base(errorService)
         {
             this._productCategoryService = productCategoryService;
         }
 
         [Route("getall")]
-        public HttpResponseMessage GetAll(HttpRequestMessage requestMessage)
+        public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
-            return CreateHttpResponse(requestMessage, () =>
+            return CreateHttpResponse(request, () =>
             {
                 var model = _productCategoryService.GetAll();
-                var responeData = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(model);
-                var respone = requestMessage.CreateResponse(HttpStatusCode.OK, responeData);
-
-                return respone;
+                var responseData = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(model);
+                var response = request.CreateResponse(HttpStatusCode.OK, responseData);
+                return response;
             });
         }
     }

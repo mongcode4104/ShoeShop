@@ -33,6 +33,7 @@ namespace ShoeShop.Web.App_Start
         private void ConfigAutofac(IAppBuilder app)
         {
             var builder = new ContainerBuilder();
+
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             // Register your Web API controllers.
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly()); //Register WebApi Controllers

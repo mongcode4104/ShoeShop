@@ -11,9 +11,9 @@ namespace ShoeShop.Service
 {
     public interface IProductCategoryService
     {
-        void Add(ProductCategory productCategory);
+        ProductCategory Add(ProductCategory productCategory);
         void Update(ProductCategory productCategory);
-        void Delete(ProductCategory productCategory);
+        ProductCategory Delete(int id);
         IEnumerable<ProductCategory> GetAll();
         ProductCategory GetById(int id);
         void SaveChange();
@@ -28,14 +28,14 @@ namespace ShoeShop.Service
             this._productCategoryRepository = productCategoryRepository;
             this._unitOfWork = unitOfWork;
         }
-        public void Add(ProductCategory productCategory)
+        public ProductCategory Add(ProductCategory ProductCategory)
         {
-            _productCategoryRepository.Add(productCategory);
+            return _productCategoryRepository.Add(ProductCategory);
         }
 
-        public void Delete(ProductCategory productCategory)
+        public ProductCategory Delete(int id)
         {
-            _productCategoryRepository.Delete(productCategory);
+            return _productCategoryRepository.Delete(id);
         }
 
         public IEnumerable<ProductCategory> GetAll()
