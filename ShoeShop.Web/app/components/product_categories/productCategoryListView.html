@@ -3,13 +3,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Home Page</h1>
+                <h1>Danh mục sản phẩm</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Trang chu</a></li>
-                    <li class="breadcrumb-item"><a href="#">San pham</a></li>
-                    <li class="breadcrumb-item active">Danh muc sang pham</li>
+                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="#">Sản phẩm</a></li>
+                    <li class="breadcrumb-item active">Danh mục sản phẩm</li>
                 </ol>
             </div>
         </div>
@@ -22,7 +22,7 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Danh muc san pham</h3>
+            <h3 class="card-title">Danh mục sản phẩm</h3>
 
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -35,16 +35,28 @@
         </div>
         <div class="card-body">
             <div class="row">
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <div class="input-group">
+                            <input type="text" class="form-control" ng-model="keyword" placeholder="Từ khóa" />
+                            <span class="input-group-sm">
+                                <button class="btn btn-default" type="button" ng-click="search()">Tìm kiếm</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-12">
                     <div class="card-body">
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th style="width: 5%">ID</th>
-                                    <th style="width: 55%">Ten danh muc</th>
-                                    <th style="width: 20%"">Ngay tao</th>
-                                    <th style="width: 10%">Trang thai</th>
-                                    <th style="width: 10%">Thao tac</th>
+                                    <th style="width: 55%">Tên danh mục</th>
+                                    <th style="width: 20%">Ngày tạo</th>
+                                    <th style="width: 10%">Trạng thái</th>
+                                    <th style="width: 10%">Thao tác</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -65,14 +77,19 @@
                                     </td>
                                 </tr>
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="5"><span class="fa-pull-right">Trang: {{page+1}} - Tổng số bảng ghi: {{totalCount}}</span></td>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
         <!-- /.card-body -->
-        <div class="card-footer">
-
+        <div class="card-footer clearfix">
+            <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="getProductCategories(page)"></pager-directive>
         </div>
         <!-- /.card-footer-->
     </div>

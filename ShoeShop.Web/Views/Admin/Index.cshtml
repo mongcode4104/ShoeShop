@@ -11,6 +11,7 @@
     <!-- Font Awesome -->
     <link href="~/Assets/admin/libs/fontawesome-free/css/all.min.css" rel="stylesheet" />
     <!-- Theme style -->
+    <link href="~/Assets/admin/libs/toastr/toastr.css" rel="stylesheet" />
     <link href="~/Assets/admin/css/adminlte.min.css" rel="stylesheet" />
 </head>
 <body class="hold-transition sidebar-mini" ng-app="shoeshop">
@@ -203,7 +204,7 @@
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-copy"></i>
                                 <p>
-                                    San Pham
+                                    SẢN PHẨM
                                     <i class="fas fa-angle-left right"></i>
                                     <span class="badge badge-info right">6</span>
                                 </p>
@@ -212,13 +213,13 @@
                                 <li class="nav-item">
                                     <a ui-sref="product_categories" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Danh muc san pham</p>
+                                        <p>Danh mục sản phẩm</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a ui-sref="products" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>San Pham</p>
+                                        <p>Sản phẩm</p>
                                     </a>
                                 </li>
                             </ul>
@@ -792,9 +793,14 @@
     <!-- Begin embed angularJS -->
     <script src="~/Assets/admin/libs/angular/angular.js"></script>
     <script src="~/Assets/admin/libs/angular-ui-router/angular-ui-router.js"></script>
+    <script src="~/Assets/admin/libs/toastr/toastr.min.js"></script>
+
     <script src="~/app/shared/modules/shoeshop.common.js"></script>
     <script src="~/app/shared/filters/statusFilter.js"></script>
     <script src="~/app/shared/services/apiService.js"></script>
+    <script src="~/app/shared/directives/pagerDirective.js"></script>
+    <script src="~/app/shared/services/notificationService.js"></script>
+
     <script src="~/app/components/products/products.module.js"></script>
     <script src="~/app/components/product_categories/productCategories.module.js"></script>
     <script src="~/app/app.js"></script>
