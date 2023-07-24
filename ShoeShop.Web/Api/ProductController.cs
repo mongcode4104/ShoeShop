@@ -14,17 +14,17 @@ using System.Web.Script.Serialization;
 
 namespace ShoeShop.Web.Api
 {
-    [RoutePrefix("api/productcategory")]
-    public class ProductCategoryController : ApiControllerBase
+    [RoutePrefix("api/product")]
+    public class ProductController : ApiControllerBase
     {
         #region Initialize
 
-        private IProductCategoryService _productCategoryService;
+        private IProductService _productService;
 
-        public ProductCategoryController(IErrorService errorService, IProductCategoryService productCategoryService)
+        public ProductController(IErrorService errorService, IProductService productService)
             : base(errorService)
         {
-            this._productCategoryService = productCategoryService;
+            this._productService = productService;
         }
 
         #endregion Initialize
@@ -35,9 +35,9 @@ namespace ShoeShop.Web.Api
         {
             return CreateHttpResponse(request, () =>
             {
-                var model = _productCategoryService.GetAll();
+                var model = _productService.GetAll();
 
-                var responseData = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(model);
+                var responseData = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(model);
 
                 var response = request.CreateResponse(HttpStatusCode.OK, responseData);
                 return response;
@@ -50,9 +50,9 @@ namespace ShoeShop.Web.Api
         {
             return CreateHttpResponse(request, () =>
             {
-                var model = _productCategoryService.GetById(id);
+                var model = _productService.GetById(id);
 
-                var responseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(model);
+                var responseData = Mapper.Map<Product, ProductViewModel>(model);
 
                 var response = request.CreateResponse(HttpStatusCode.OK, responseData);
 
@@ -68,14 +68,14 @@ namespace ShoeShop.Web.Api
             {
                 int totalRow = 0;
 
-                var model = _productCategoryService.GetAll(keyword);
+                var model = _productService.GetAll(keyword);
 
                 totalRow = model.Count();
                 var query = model.OrderByDescending(x => x.CreateDate).Skip(page * pageSize).Take(pageSize);
 
-                var responseData = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(query);
+                var responseData = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(query);
 
-                var paginationSet = new PaginationSet<ProductCategoryViewModel>()
+                var paginationSet = new PaginationSet<ProductViewModel>()
                 {
                     Items = responseData,
                     Page = page,
@@ -91,7 +91,7 @@ namespace ShoeShop.Web.Api
         [Route("create")]
         [HttpPost]
         [AllowAnonymous]
-        public HttpResponseMessage Create(HttpRequestMessage request, ProductCategoryViewModel productCategoryViewModel)
+        public HttpResponseMessage Create(HttpRequestMessage request, ProductViewModel productViewModel)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -103,14 +103,14 @@ namespace ShoeShop.Web.Api
                 }
                 else
                 {
-                    var newProductCategory = new ProductCategory();
-                    newProductCategory.UpdateProductCategory(productCategoryViewModel);
-                    newProductCategory.CreateDate = DateTime.Now;
+                    var newProduct = new Product();
+                    newProduct.UpdateProduct(productViewModel);
+                    newProduct.CreateDate = DateTime.Now;
 
-                    _productCategoryService.Add(newProductCategory);
-                    _productCategoryService.SaveChange();
+                    _productService.Add(newProduct);
+                    _productService.SaveChange();
 
-                    var responeData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(newProductCategory);
+                    var responeData = Mapper.Map<Product, ProductViewModel>(newProduct);
                     response = request.CreateResponse(HttpStatusCode.Created, responeData);
                 }
                 return response;
@@ -120,7 +120,7 @@ namespace ShoeShop.Web.Api
         [Route("update")]
         [HttpPut]
         [AllowAnonymous]
-        public HttpResponseMessage Update(HttpRequestMessage request, ProductCategoryViewModel productCategoryViewModel)
+        public HttpResponseMessage Update(HttpRequestMessage request, ProductViewModel productViewModel)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -132,14 +132,14 @@ namespace ShoeShop.Web.Api
                 }
                 else
                 {
-                    var dbProductCategory = _productCategoryService.GetById(productCategoryViewModel.ID);
-                    dbProductCategory.UpdateProductCategory(productCategoryViewModel);
-                    dbProductCategory.UpdateDate = DateTime.Now;
+                    var dbProduct = _productService.GetById(productViewModel.ID);
+                    dbProduct.UpdateProduct(productViewModel);
+                    dbProduct.UpdateDate = DateTime.Now;
 
-                    _productCategoryService.Update(dbProductCategory);
-                    _productCategoryService.SaveChange();
+                    _productService.Update(dbProduct);
+                    _productService.SaveChange();
 
-                    var responeData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(dbProductCategory);
+                    var responeData = Mapper.Map<Product, ProductViewModel>(dbProduct);
                     response = request.CreateResponse(HttpStatusCode.Created, responeData);
                 }
                 return response;
@@ -161,10 +161,10 @@ namespace ShoeShop.Web.Api
                 }
                 else
                 {
-                    var oldProductCategory = _productCategoryService.Delete(id);
-                    _productCategoryService.SaveChange();
+                    var oldProduct = _productService.Delete(id);
+                    _productService.SaveChange();
 
-                    var responeData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(oldProductCategory);
+                    var responeData = Mapper.Map<Product, ProductViewModel>(oldProduct);
                     response = request.CreateResponse(HttpStatusCode.Created, responeData);
                 }
                 return response;
@@ -173,7 +173,7 @@ namespace ShoeShop.Web.Api
         [Route("deletemulti")]
         [HttpDelete]
         [AllowAnonymous]
-        public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string checkedProductCategories)
+        public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string checkedProducts)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -185,15 +185,15 @@ namespace ShoeShop.Web.Api
                 }
                 else
                 {
-                    var listProductCategory = new JavaScriptSerializer().Deserialize<List<int>>(checkedProductCategories);
+                    var listProduct = new JavaScriptSerializer().Deserialize<List<int>>(checkedProducts);
 
-                    foreach (var item in listProductCategory)
+                    foreach (var item in listProduct)
                     {
-                        _productCategoryService.Delete(item);
+                        _productService.Delete(item);
                     }
-                    _productCategoryService.SaveChange();
+                    _productService.SaveChange();
 
-                    response = request.CreateResponse(HttpStatusCode.OK, listProductCategory.Count);
+                    response = request.CreateResponse(HttpStatusCode.OK, listProduct.Count);
                 }
                 return response;
             });

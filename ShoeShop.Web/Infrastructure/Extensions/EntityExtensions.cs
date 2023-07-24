@@ -69,5 +69,29 @@ namespace ShoeShop.Web.Infrastructure.Extensions
             post.MetaDescription = postViewModel.MetaDescription;
             post.Status = postViewModel.Status;
         }
+        public static void UpdateProduct(this Product product, ProductViewModel productViewModel)
+        {
+            product.ID = productViewModel.ID;
+            product.Name = productViewModel.Name;
+            product.Alias = productViewModel.Alias;
+            product.Description = productViewModel.Desription;
+            product.CategoryID = productViewModel.CategoryID;
+            product.Content = productViewModel.Content;
+            product.Image = productViewModel.Image;
+            product.MoreImage = productViewModel.MoreImage;
+            product.HomeFlag = productViewModel.HomeFlag;
+            product.ViewCount = productViewModel.ViewCount;
+            product.Price = productViewModel.Price;
+            product.PromotionPrice = productViewModel.PromotionPrice;
+            product.Warrantty = productViewModel.Warrantty;
+
+            product.CreateDate = productViewModel.CreateDate;
+            product.CreateBy = productViewModel.CreateBy;
+            product.UpdateDate = productViewModel.UpdateDate;
+            product.UpdateBy = productViewModel.UpdateBy;
+            product.MetaKeyword = productViewModel.MetaKeyword;
+            product.MetaDescription = productViewModel.MetaDescription;
+            product.Status = productViewModel.Status;
+        }
     }
 }

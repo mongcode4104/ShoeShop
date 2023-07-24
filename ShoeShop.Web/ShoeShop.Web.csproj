@@ -233,6 +233,7 @@
     <Compile Include="Api\AccountController.cs" />
     <Compile Include="Api\PostCategoryController.cs" />
     <Compile Include="Api\ProductCategoryController.cs" />
+    <Compile Include="Api\ProductController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -442,6 +443,8 @@
     <Folder Include="app\shared\footer\" />
     <Folder Include="app\shared\navigation\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Assets\admin\libs\ckeditor\" />
+    <Folder Include="Assets\admin\libs\ng-ckeditor\" />
     <Folder Include="Assets\client\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
