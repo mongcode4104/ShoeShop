@@ -26,13 +26,14 @@ namespace ShoeShop.Web.Models
         public decimal? PromotionPrice { get; set; }
         public int? Warrantty { get; set; }
 
-        public string Desription { get; set; }
+        public string Description { get; set; }
         public string Content { get; set; }
 
         public bool? HomeFlag { get; set; }
         public bool? HotFlag { get; set; }
         public int? ViewCount { get; set; }
 
+        public string Tags { get; set; }
         public DateTime? CreateDate { set; get; }
         public string CreateBy { set; get; }
         public DateTime? UpdateDate { set; get; }
@@ -41,6 +42,5 @@ namespace ShoeShop.Web.Models
         public string MetaDescription { set; get; }
         public bool Status { get; set; }
         public virtual ProductCategoryViewModel ProductCategory { get; set; }
-        public IEnumerable<ProductTagViewModel> ProductTags { get; set; }
     }
 }

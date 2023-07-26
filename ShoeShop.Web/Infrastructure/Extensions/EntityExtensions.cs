@@ -74,7 +74,7 @@ namespace ShoeShop.Web.Infrastructure.Extensions
             product.ID = productViewModel.ID;
             product.Name = productViewModel.Name;
             product.Alias = productViewModel.Alias;
-            product.Description = productViewModel.Desription;
+            product.Description = productViewModel.Description;
             product.CategoryID = productViewModel.CategoryID;
             product.Content = productViewModel.Content;
             product.Image = productViewModel.Image;
@@ -92,6 +92,7 @@ namespace ShoeShop.Web.Infrastructure.Extensions
             product.MetaKeyword = productViewModel.MetaKeyword;
             product.MetaDescription = productViewModel.MetaDescription;
             product.Status = productViewModel.Status;
+            product.Tags = productViewModel.Tags;
         }
     }
 }

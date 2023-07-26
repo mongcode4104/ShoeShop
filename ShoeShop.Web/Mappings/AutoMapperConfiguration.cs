@@ -16,6 +16,7 @@ namespace ShoeShop.Web.Mappings
             Mapper.CreateMap<PostCategory, PostCategoryViewModel>();
             Mapper.CreateMap<Tag, TagViewModel>();
             Mapper.CreateMap<ProductCategory, ProductCategoryViewModel>();
+            Mapper.CreateMap<Product, ProductViewModel>();
         }
     }
 }

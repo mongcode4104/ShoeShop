@@ -21,6 +21,10 @@
     {
       "library": "ckeditor@4.5.9",
       "destination": "Assets/admin/libs/ckeditor/"
+    },
+    {
+      "library": "ng-ckeditor@0.2.1",
+      "destination": "Assets/admin/libs/ng-ckeditor/"
     }
   ]
 }

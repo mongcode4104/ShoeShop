@@ -88,6 +88,14 @@
     <Compile Include="Migrations\202307240721417_AddEditProductModel.designer.cs">
       <DependentUpon>202307240721417_AddEditProductModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202307250717098_AddTagField.cs" />
+    <Compile Include="Migrations\202307250717098_AddTagField.designer.cs">
+      <DependentUpon>202307250717098_AddTagField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307260259176_AddTagListInProduct.cs" />
+    <Compile Include="Migrations\202307260259176_AddTagListInProduct.designer.cs">
+      <DependentUpon>202307260259176_AddTagListInProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
@@ -142,6 +150,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202307240721417_AddEditProductModel.resx">
       <DependentUpon>202307240721417_AddEditProductModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307250717098_AddTagField.resx">
+      <DependentUpon>202307250717098_AddTagField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307260259176_AddTagListInProduct.resx">
+      <DependentUpon>202307260259176_AddTagListInProduct.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
