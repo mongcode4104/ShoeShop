@@ -5,7 +5,7 @@
 
     function productEditController(apiService, $scope, notificationService, $state, commonService, $stateParams) {
         $scope.product = {};
-
+        $scope.moreImages = [];
         $scope.ckeditorOptions = {
             languague: 'vi',
             height: '200px'
@@ -21,12 +21,14 @@
         function loadProductDetail() {
             apiService.get('api/product/getbyid/' + $stateParams.id, null, function (result) {
                 $scope.product = result.data;
+                $scope.moreImages = JSON.parse($scope.product.MoreImage);
             }, function (error) {
                 notificationService.displayError(error.data);
             });
         }
 
         function UpdateProduct() {
+            $scope.product.MoreImage = JSON.stringify($scope.moreImages);
             apiService.put('api/product/update', $scope.product,
                 function (result) {
                     notificationService.displaySuccess(result.data.Name + ' đã được cập nhật.');
@@ -46,10 +48,24 @@
         $scope.ChooseImage = function () {
             var finder = new CKFinder();
             finder.selectActionFunction = function (fileUrl) {
-                $scope.product.Image = fileUrl;
+                $scope.$apply(function () {
+                    $scope.product.Image = fileUrl;
+                })
             }
             finder.popup();
         }
+
+        $scope.ChooseMoreImage = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.moreImages.push(fileUrl);
+                })
+            }
+            finder.popup();
+        }
+
+
         loadProductCategory();
         loadProductDetail();
     }
